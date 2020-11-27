@@ -38,7 +38,7 @@ export default function BasePage() {
       <Switch>
         {
           /* Redirect from root URL to /dashboard. */
-          <Redirect exact from="/" to="/dashboard" />
+          <Redirect exact from="/" to="/classes" />
         }
         <ContentRoute path="/classes" component={Classes}/>
         <ContentRoute path="/classdetail/:classId/:name" component={Subjects}/>
