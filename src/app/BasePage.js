@@ -7,6 +7,10 @@ import { DashboardPage } from "./pages/DashboardPage";
 import EKHomePage from "./pages/EKHomePage";
 import AddClass from "./pages/AddClass";
 import AddSubject from "./pages/AddSubject";
+import Classes from "./pages/Classes";
+import Subjects from "./pages/Subjects";
+import Chapters from "./pages/Chapters";
+import Slots from "./pages/Slots";
 
 
 
@@ -36,6 +40,11 @@ export default function BasePage() {
           /* Redirect from root URL to /dashboard. */
           <Redirect exact from="/" to="/dashboard" />
         }
+        <ContentRoute path="/classes" component={Classes}/>
+        <ContentRoute path="/classdetail/:classId/:name" component={Subjects}/>
+        <ContentRoute path="/subjectdetail/:subjectId/:name" component={Chapters}/>
+        <ContentRoute path="/chapterdetail/:chapterId/:name" component={Slots}/>
+
         <ContentRoute path="/ekhomepage" component={EKHomePage} />
         <ContentRoute path="/addsubject" component={AddSubject} />
         <ContentRoute path="/addclass" component={AddClass} />
@@ -47,6 +56,7 @@ export default function BasePage() {
         <Route path="/e-commerce" component={ECommercePage} />
         <Route path="/user-profile" component={UserProfilepage} />
         <Redirect to="error/error-v1" />
+        
       </Switch>
     </Suspense>
   );
