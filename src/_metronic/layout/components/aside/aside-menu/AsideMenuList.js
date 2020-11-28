@@ -24,7 +24,7 @@ export function AsideMenuList({ layoutProps }) {
           className={`menu-item ${getMenuItemActive("/dashboard", false)}`}
           aria-haspopup="true"
         >
-          <NavLink className="menu-link" to="/ekhomapage">
+          <NavLink className="menu-link" to="/">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Layers.svg")} />
             </span>
@@ -92,14 +92,35 @@ export function AsideMenuList({ layoutProps }) {
             <span className="menu-text">View Created Session</span>
           </NavLink>
         </li>
+        <li
+          className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
+          aria-haspopup="true"
+        >
+          <NavLink className="menu-link" to="/user-profile">
+          <span className="svg-icon menu-icon">
+              <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")} />
+            </span>
+            <span className="menu-text">View Bookings</span>
+          </NavLink>
+        </li>
         <li className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
           aria-haspopup="true">
           
-          <NavLink className="menu-link" to="/user-profile">
+          <NavLink className="menu-link" to="/">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Book.svg")} />
             </span>
-            <span className="menu-text">Assigned Teachers</span>
+            <span className="menu-text">Create Teachers</span>
+          </NavLink>
+        </li>
+        <li className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
+          aria-haspopup="true">
+          
+          <NavLink className="menu-link" to="/">
+            <span className="svg-icon menu-icon">
+              <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Book.svg")} />
+            </span>
+            <span className="menu-text">Create Students</span>
           </NavLink>
         </li>
         {/*end::1 Level*/}

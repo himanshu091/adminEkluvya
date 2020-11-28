@@ -15,10 +15,7 @@ export function Topbar() {
   const uiService = useHtmlClassService();
   const layoutProps = useMemo(() => {
     return {
-      viewSearchDisplay: objectPath.get(
-        uiService.config,
-        "extras.search.display"
-      ),
+     
       viewNotificationsDisplay: objectPath.get(
         uiService.config,
         "extras.notifications.display"

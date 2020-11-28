@@ -51,7 +51,7 @@ export function LayoutInit() {
       //////////////////////////////////////////////
       // Layout Extended Partials(optional to use)//
       //////////////////////////////////////////////
-      KTLayoutSubheader.init('kt_subheader');
+    
 
       // Init Scrolltop
       KTLayoutScrolltop.init('kt_scrolltop');
