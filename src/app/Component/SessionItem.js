@@ -18,39 +18,47 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
 
     const [joineeName, setjoineeName] = useState("");
 
-    var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
+    
 
     const handleSubmit = async () => {
-
+        const meetingId = "54587546"
+        const meetingName = "goldenBird"
+        const voiceBridge = 11445
+        const fullName = "silverSpoon"
         //Logic to generate Meeting
         // await createMeeting(data._id, data.subjectId.name, 12511)
-        await createMeeting("zjcjdhcjhdb", "youmeI", 12711)
+        createMeeting(meetingId, meetingName, voiceBridge)
+        console.log("step1")
         const response = await fetch(createMeetingLink)
         console.log("Meeting Creation => ",response)
         // await joinAsModerator(current.name,data._id)
-        await joinAsModerator("sdhgjsdgjhds","zjcjdhcjhdb")
+        await joinAsModerator(fullName,meetingId)
         //Logic ends
         const res = await assignTeacher(data._id,current.id,data._id,joinModeratorLink)
         console.log(res)
         setshowForm(false)
     }
-    const createMeeting = async (meetingId, meetingName, voiceBridge) => {
+    const createMeeting = (meetingId, meetingName, voiceBridge) => {
+        var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
+        // var checksum=sha1('create'+ `allowStartStopRecording=false&autoStartRecording=false&meetingID=${meetingId}&name=${meetingName}&record=false&voiceBridge=${voiceBridge}`+ 'uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec')
+    
         var checksum = sha1(
-            "create" +
-              `allowStartStopRecording=false&attendeePW=ap&autoStartRecording=false&meetingID=${meetingId}&moderatorPW=mp&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21` +
-              `${secretKey}`
-          );
-          console.log("Checksum for create", checksum);
-      
-          console.log("Meeting Id for Creating meet =>");
-          console.log(
-            `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&autoStartRecording=false&meetingID=${meetingId}&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&checksum=${checksum}`
-          );
-          setcreateMeetingLink(
-            `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&attendeePW=ap&autoStartRecording=false&meetingID=${meetingId}&moderatorPW=mp&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=${checksum}`
-          );
-    }
+          "create" +
+            `allowStartStopRecording=false&attendeePW=ap&autoStartRecording=false&meetingID=${meetingId}&moderatorPW=mp&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21` +
+            `${secretKey}`
+        );
+        console.log("Checksum for create", checksum);
+    
+        console.log("Meeting Id for Creating meet =>");
+        console.log(
+          `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&autoStartRecording=false&meetingID=${meetingId}&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&checksum=${checksum}`
+        );
+        setcreateMeetingLink(
+          `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&attendeePW=ap&autoStartRecording=false&meetingID=${meetingId}&moderatorPW=mp&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=${checksum}`
+        );
+      };
     const joinAsModerator = (fullName, meetingId) => {
+        var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
         // var checksum=sha1('join'+`fullName=${fullName}&meetingID=${meetingId}&redirect=false`+ 'uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec')
     
         var checksum = sha1(
