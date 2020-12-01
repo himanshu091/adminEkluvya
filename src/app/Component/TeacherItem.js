@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { deleteClass } from '../../api'
+import { deleteTeacher } from '../../api'
 
 function StudentItem({index, data, fetchAllClasses}) {
     return (
@@ -30,7 +30,7 @@ function StudentItem({index, data, fetchAllClasses}) {
                       </a>
                       <a title="Delete customer" onClick={
                          async ()=>{
-                           //  await deleteClass(data._id); fetchAllClasses()
+                            await deleteTeacher(data._id);
                            }
                          } className="btn btn-icon btn-light btn-hover-danger btn-sm">
                          <span className="svg-icon svg-icon-md svg-icon-danger">

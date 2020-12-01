@@ -138,6 +138,21 @@ export const deleteChapter = async (chapterId) => {
       return res.json();
 
 }
+export const deleteTeacher = async (teacherId) => {
+    const res = await fetch(`${API_URL}/deleteTeacher/${teacherId}`, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer'
+      });
+      return res.json();
+
+}
 
 export const fetchClassById = async (classId) => {
     const res = await fetch(`${API_URL}/getClassById/${classId}`, {
@@ -250,7 +265,7 @@ export const createTeacher = async (resData) => {
 
 export const assignTeacher = async (sessionId,teacherId,meetingUrl,teacherMeetingUrl) => {
   const res = await fetch(`${API_URL}/assignTeacherToSession`, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit

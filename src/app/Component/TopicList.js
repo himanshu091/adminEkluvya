@@ -15,7 +15,7 @@ function TopicList({data}) {
 
     }
     return (
-        <div style={{border:'1px dashed', width:'100%', minHeight:'350px'}}>
+        <div style={{width:'100%', minHeight:'350px'}}>
             <div className="container-fluid" style={{paddingRight: '0px'}}><div className="row" style={{paddingRight: '0px',paddingTop:'10px'}}><div className="col-8"></div><div className="col-4"><a className="btn btn-success" onClick={()=>setshowModal(true)} style={{backgroundColor:'#3e94f6'}}>Add New Lesson</a></div></div></div>
             <hr/>
             <p style={{paddingLeft:'10px',paddingRight:'10px'}}><b>Subject Description :</b>{data && data.subjectDescription}</p>

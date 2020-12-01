@@ -7,11 +7,10 @@ function ClassDetailView() {
     const [showModal, setshowModal] = useState(false)
     const classSelectedQ = useRef(null)
     const nameQ = useRef(null)
-    const priceQ = useRef(null)
     const descQ = useRef(null)
     const [data, setdata] = useState(null) //set it default for class 2
-    const [selectedClass, setselectedClass] = useState("5fc10e2fafcbf053d02ab523") //set it default for class 2
-    const classQ = useRef("5fc10e2fafcbf053d02ab523")
+    const [selectedClass, setselectedClass] = useState("5fc654321ffe22002478cefb") //set it default for class 2
+    const classQ = useRef("5fc654321ffe22002478cefb")
     const [lessons, setLessons] = useState([{ value: null }]);
     const [lessionSession, setlessionSession] = useState([{ value: null }]);
 
@@ -70,27 +69,28 @@ function ClassDetailView() {
       })
       var classId = classSelectedQ.current.value
       var name = nameQ.current.value
-      var price = priceQ.current.value
       var desc = descQ.current.value
       console.log({
         classId:classId,
         name:name,
-        price:price,
         desc:desc,
         chapters:chapters
       })
    }
     return (
-        <div className="container-fluid" style={{backgroundColor:"#fff", padding: '15px', borderRadius:'5px'}}>
+      
+      <div className="">
+          <div style={{backgroundColor:'#fff', padding:'10px', width:'295px', borderRadius:'5px'}}>
             <h4>Detail for Class <select onChange={updateSelectedClass} ref={classQ}>
-            
-                    {data && data.map(cla => {
-                        return <option className="" value={cla._id}>{cla.name}</option>
-                    })}
-                </select></h4>
-                <div style={{position:'absolute', top:'7px', right:'20px'}}><a className="btn btn-danger" onClick={()=>setshowModal(true)}>Add New Subject</a></div>
-                <SubjectList currentClass={selectedClass}/>
-                {showModal && <div style={{display:'block', position: 'absolute', top: '-100px',left: '-150px', width:'500px', zIndex:100}}><div role="document" className="modal-dialog modal-lg">
+                
+                {data && data.map(cla => {
+                    return <option className="" value={cla._id}>{cla.name}</option>
+                })}
+                
+            </select></h4>
+            <a className="btn btn-primary" onClick={()=>setshowModal(true)} style={{width:'100%', marginTop:'10px'}}>Add A Subject</a>
+          </div>
+          {showModal && <div style={{display:'block', position: 'absolute', top: '100px',left: '550px', width:'500px', zIndex:100}}><div role="document" className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <div className="modal-title h4" id="example-modal-sizes-title-lg">Add New Subject</div>
@@ -102,23 +102,22 @@ function ClassDetailView() {
                   <div className="col-lg-6">
                       <label>Select Class</label>
                       <select ref={classSelectedQ} className="form-control">
-                          <option value="">Class 2</option>
-                          <option value="">Class 3</option>
-                          <option value="">Class 4</option>
-                          <option value="">Class 5</option>
-                          <option value="">Class 6</option>
-                          <option value="">Class 7</option>
-                          <option value="">Class 8</option>
+                          <option value="5fc654321ffe22002478cefb">Class 2</option>
+                          <option value="5fc654351ffe22002478cefc">Class 3</option>
+                          <option value="5fc6543b1ffe22002478cefd">Class 4</option>
+                          <option value="5fc6543f1ffe22002478cefe">Class 5</option>
+                          <option value="5fc654431ffe22002478ceff">Class 6</option>
+                          <option value="5fc654491ffe22002478cf00">Class 7</option>
+                          <option value="5fc6544f1ffe22002478cf01">Class 8</option>
+                          <option value="5fc654551ffe22002478cf02">Class 9</option>
+                          <option value="5fc654591ffe22002478cf03">Class 10</option>
+                          <option value="5fc654621ffe22002478cf05">Class 11</option>
+                          <option value="5fc654c01ffe22002478cf06">Class 12</option>
                       </select>
                   </div>
                 <div className="col-lg-6">
                   <label>Enter name of Subject</label><input type="text" ref={nameQ} className="form-control" name="className" placeholder="Subject Name"  />
                   {/* <div className="feedback">Please enter <b>Class Name</b></div> */}
-                </div>
-                <div className="col-lg-6">
-                <br/>
-                  <label>Enter Per Session Cost</label><input type="number" ref={priceQ} className="form-control" name="PerSessionCost" placeholder="Price"  />
-                  {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
                 <div className="col-lg-12">
                     <br/>
@@ -197,7 +196,16 @@ function ClassDetailView() {
           <div className="modal-footer"><button  onClick={()=>{setshowModal(false)}} type="button" className="btn btn-light btn-elevate">Cancel</button> <button onClick={handleSubmit} type="submit" className="btn btn-primary btn-elevate">Save</button></div>
         </div>
       </div></div>}
-        </div>
+
+          <div className="container-fluid" style={{ padding: '15px', borderRadius:'5px'}}>
+                  
+                  <div style={{position:'absolute', top:'7px', right:'20px'}}><a className="btn btn-danger" onClick={()=>setshowModal(true)}>Add New Subject</a></div>
+                  <SubjectList currentClass={selectedClass}/>
+                  
+          </div>
+
+      </div>
+        
     )
 }
 

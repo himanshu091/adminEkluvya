@@ -21,24 +21,33 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
     
 
     const handleSubmit = async () => {
-        const meetingId = "54587546"
-        const meetingName = "goldenBird"
+        const meetingId = data._id
+        const meetingName = data.subjectId.name.replace(/\s/g, "+");
         const voiceBridge = 11445
-        const fullName = "silverSpoon"
+        const fullName = current.name.replace(/\s/g, "+");
         //Logic to generate Meeting
         // await createMeeting(data._id, data.subjectId.name, 12511)
-        createMeeting(meetingId, meetingName, voiceBridge)
-        console.log("step1")
-        const response = await fetch(createMeetingLink)
-        console.log("Meeting Creation => ",response)
+        const createMeetingLink = await createMeeting(meetingId, meetingName, voiceBridge)
+
+        console.log("step1 => createMeetingLink =",createMeetingLink)
+
+        const Http = new XMLHttpRequest();
+        const url=createMeetingLink;
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange=(e)=>{
+            console.log(Http.responseText)
+        }
+        // console.log("Meeting Creation => ",response)
         // await joinAsModerator(current.name,data._id)
-        await joinAsModerator(fullName,meetingId)
+        const joinModeratorLink = await joinAsModerator(fullName,meetingId)
+        console.log("step2 => joinMeetingLink =",joinModeratorLink)
         //Logic ends
         const res = await assignTeacher(data._id,current.id,data._id,joinModeratorLink)
         console.log(res)
         setshowForm(false)
     }
-    const createMeeting = (meetingId, meetingName, voiceBridge) => {
+    const createMeeting = async (meetingId, meetingName, voiceBridge) => {
         var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
         // var checksum=sha1('create'+ `allowStartStopRecording=false&autoStartRecording=false&meetingID=${meetingId}&name=${meetingName}&record=false&voiceBridge=${voiceBridge}`+ 'uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec')
     
@@ -53,11 +62,11 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
         console.log(
           `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&autoStartRecording=false&meetingID=${meetingId}&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&checksum=${checksum}`
         );
-        setcreateMeetingLink(
+        return(
           `https://tuitions.ekluvya.guru/bigbluebutton/api/create?allowStartStopRecording=false&attendeePW=ap&autoStartRecording=false&meetingID=${meetingId}&moderatorPW=mp&name=${meetingName}&record=false&voiceBridge=${voiceBridge}&welcome=%3Cbr%3EWelcome+to+%3Cb%3E%25%25CONFNAME%25%25%3C%2Fb%3E%21&checksum=${checksum}`
         );
       };
-    const joinAsModerator = (fullName, meetingId) => {
+    const joinAsModerator = async (fullName, meetingId) => {
         var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
         // var checksum=sha1('join'+`fullName=${fullName}&meetingID=${meetingId}&redirect=false`+ 'uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec')
     
@@ -67,10 +76,10 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
         );
     
         console.log(checksum);
-        console.log("Meeting Id for Joinee =>");
-        console.log(`https://tuitions.ekluvya.guru/bigbluebutton/api/join?fullName=${fullName}&meetingID=${meetingId}&redirect=false&checksum=${checksum}`)
+        // console.log("Meeting Id for Joinee =>");
+        // console.log(`https://tuitions.ekluvya.guru/bigbluebutton/api/join?fullName=${fullName}&meetingID=${meetingId}&redirect=true&checksum=${checksum}`)
     
-        setjoinModeratorLink(
+        return(
           `https://tuitions.ekluvya.guru/bigbluebutton/api/join?fullName=${fullName}&meetingID=${meetingId}&password=mp&redirect=true&checksum=${checksum}`
         );
       };
@@ -98,8 +107,7 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
                             <form action="#" className="form form-label-right">
                             <div className="form-group row">
                                 <div className="col-lg-12">
-                                {/* <div className="feedback">Please enter <b>Class Name</b></div> */}
-                                <AssignTeacher setCurrentTeacher={(id)=>setCurrent(id)} teacherData={teacherData} />
+                                <AssignTeacher setCurrentTeacher={(id)=>setCurrent(id)} teacherData={teacherData} slot={data.time} subject={data.subjectId.name}/>
                                 <br/>
                                 </div>
                             </div>
