@@ -85,7 +85,7 @@ export function AsideMenuList({ layoutProps }) {
           className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
           aria-haspopup="true"
         >
-          <NavLink className="menu-link" to="/user-profile">
+          <NavLink className="menu-link" to="/sessions">
           <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")} />
             </span>
@@ -93,7 +93,7 @@ export function AsideMenuList({ layoutProps }) {
           </NavLink>
         </li>
         <li
-          className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
+          className={`menu-item ${getMenuItemActive("/bookings", false)}`}
           aria-haspopup="true"
         >
           <NavLink className="menu-link" to="/user-profile">
@@ -106,21 +106,21 @@ export function AsideMenuList({ layoutProps }) {
         <li className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
           aria-haspopup="true">
           
-          <NavLink className="menu-link" to="/">
+          <NavLink className="menu-link" to="/teachers">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Book.svg")} />
             </span>
-            <span className="menu-text">Create Teachers</span>
+            <span className="menu-text">Teachers</span>
           </NavLink>
         </li>
         <li className={`menu-item ${getMenuItemActive("/user-profile", false)}`}
           aria-haspopup="true">
           
-          <NavLink className="menu-link" to="/">
+          <NavLink className="menu-link" to="/students">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Book.svg")} />
             </span>
-            <span className="menu-text">Create Students</span>
+            <span className="menu-text">Students</span>
           </NavLink>
         </li>
         {/*end::1 Level*/}

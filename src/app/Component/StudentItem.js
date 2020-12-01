@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { deleteSubject } from '../../api'
+import { deleteClass } from '../../api'
 
-function SubjectItem({index, data, fetchSubjects}) {
+function StudentItem({index, data, fetchAllClasses}) {
     return (
         <tr>
                      
                       <td>{index+1}</td>
-                      <td><Link to={`/subjectdetail/${data._id}/${data.name}`} style={{textTransform:'capitalize'}}>{data.name}</Link></td>
-                      {/* <td>{data.listOfSubjectId.length}</td> */}
-                      {/* <td>{data.totalSessionsOfSubject}</td> */}
-                      <td>{data.listOfChaptersId.length}</td>
+                      <td>{data.email}</td>
+                      <td>{data.name}</td>
+                      <td>{data.mobileNumber}</td>
+                      <td>{data.age}</td>
                       <td className="text-right pr-0" style={{ minWidth: '100px' }}>
                       <a title="Edit customer" className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                          <span className="svg-icon svg-icon-md svg-icon-primary">
@@ -26,7 +26,9 @@ function SubjectItem({index, data, fetchSubjects}) {
                             </svg>
                          </span>
                       </a>
-                      <a title="Delete customer" onClick={async ()=>{await deleteSubject(data._id); fetchSubjects()}} className="btn btn-icon btn-light btn-hover-danger btn-sm">
+                      <a title="Delete customer" onClick={async ()=>{
+                        //  await deleteClass(data._id); fetchAllClasses()
+                         }} className="btn btn-icon btn-light btn-hover-danger btn-sm">
                          <span className="svg-icon svg-icon-md svg-icon-danger">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                <title>Stockholm-icons / General / Trash</title>
@@ -45,4 +47,4 @@ function SubjectItem({index, data, fetchSubjects}) {
     )
 }
 
-export default SubjectItem
+export default StudentItem

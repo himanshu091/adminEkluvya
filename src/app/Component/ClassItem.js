@@ -6,12 +6,11 @@ function ClassItem({index, data, fetchAllClasses}) {
     return (
         <tr>
                      
-                      <td>{index+1}</td>
-                      <td><Link to={`/classdetail/${data._id}/${data.name}`}>{data.name}</Link></td>
-                      <td>{data.listOfSubjectId.length}</td>
-                      <td>{data.costOFSession}</td>
+                      {/* <td>{index+1}</td> */}
+                      <td>Class-{data.name}</td>
+                      <td  style={{textAlign: 'center'}}>{data.listOfSubjectId.length}</td>
                       <td className="text-right pr-0" style={{ minWidth: '100px' }}>
-                      <a title="Edit customer" className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                      {/* <a title="Edit customer" className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                          <span className="svg-icon svg-icon-md svg-icon-primary">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                <title>Stockholm-icons / Communication / Write</title>
@@ -24,8 +23,8 @@ function ClassItem({index, data, fetchAllClasses}) {
                                </g>
                             </svg>
                          </span>
-                      </a>
-                      <a title="Delete customer" onClick={async ()=>{await deleteClass(data._id); fetchAllClasses()}} className="btn btn-icon btn-light btn-hover-danger btn-sm">
+                      </a> */}
+                      {/* <a title="Delete customer" onClick={async ()=>{await deleteClass(data._id); fetchAllClasses()}} className="btn btn-icon btn-light btn-hover-danger btn-sm">
                          <span className="svg-icon svg-icon-md svg-icon-danger">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                <title>Stockholm-icons / General / Trash</title>
@@ -38,7 +37,7 @@ function ClassItem({index, data, fetchAllClasses}) {
                                </g>
                             </svg>
                          </span>
-                      </a>
+                      </a> */}
                       </td>
                    </tr>
     )
