@@ -4,8 +4,8 @@ import { assignTeacher, deleteClass } from '../../api'
 import AssignTeacher from './AssignTeacher'
 import sha1 from 'js-sha1';
 
-function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
-    const [showForm, setshowForm] = useState(false)
+function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
+    const [showForm, setshowForm] = useState(true)
     const [current, setCurrent] = useState(null)
     const nameQ = useRef(null)
     const emailQ = useRef(null)
@@ -46,6 +46,7 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
         const res = await assignTeacher(data._id,current.id,data._id,joinModeratorLink)
         console.log(res)
         setshowForm(false)
+        fetchAllSessions()
     }
     const createMeeting = async (meetingId, meetingName, voiceBridge) => {
         var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
@@ -93,9 +94,10 @@ function SessionItem({index, data, fetchAllClasses, teachers, teacherData}) {
                       <td>{new Date(data.startDate).toDateString()}</td>
                       <td>{new Date(data.endDate).toDateString()}</td>
                       <td>{data.time}</td>
+                      {data.teacherId?<td style={{color:'green',fontWeight:'bold'}}>Assigned</td>:<td>Pending</td>}
                       
                       <td className="text-right pr-0" style={{ minWidth: '100px' }}>
-                      <a onClick={()=>setshowForm(true)} className="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Assign Teacher</a>
+                      {!data.teacherId && <a onClick={()=>setshowForm(true)} className="btn btn-sm btn-success font-weight-bold py-2 px-3 px-xxl-5 my-1">Assign Teacher</a>}
                       </td>
                       {showForm && <div style={{display:'block', position: 'absolute', top: '-125px',left:'150px', zIndex:'100', height:'550px'}}><div role="document" className="modal-dialog modal-lg">
                         <div className="modal-content">

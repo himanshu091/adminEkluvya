@@ -31,7 +31,7 @@ export function AuthPage() {
                 <img
                   alt="Logo"
                   className="max-h-70px"
-                  src={toAbsoluteUrl("/media/logos/logo-letter-1.png")}
+                  src={toAbsoluteUrl("/media/logos/logo-light.png")}
                 />
               </Link>
               {/* end:: Aside header */}
@@ -39,11 +39,9 @@ export function AuthPage() {
               {/* start:: Aside content */}
               <div className="flex-column-fluid d-flex flex-column justify-content-center">
                 <h3 className="font-size-h1 mb-5 text-white">
-                  Welcome to Metronic!
+                  Welcome to Ekluvya Admin!
                 </h3>
                 <p className="font-weight-lighter text-white opacity-80">
-                  The ultimate Bootstrap & React 16 admin theme framework for
-                  next generation web apps.
                 </p>
               </div>
               {/* end:: Aside content */}
@@ -51,18 +49,7 @@ export function AuthPage() {
               {/* start:: Aside footer for desktop */}
               <div className="d-none flex-column-auto d-lg-flex justify-content-between mt-10">
                 <div className="opacity-70 font-weight-bold	text-white">
-                  &copy; 2020 Metronic
-                </div>
-                <div className="d-flex">
-                  <Link to="/terms" className="text-white">
-                    Privacy
-                  </Link>
-                  <Link to="/terms" className="text-white ml-10">
-                    Legal
-                  </Link>
-                  <Link to="/terms" className="text-white ml-10">
-                    Contact
-                  </Link>
+                  &copy; 2020 Ekluvya
                 </div>
               </div>
               {/* end:: Aside footer for desktop */}
@@ -74,7 +61,7 @@ export function AuthPage() {
           {/*begin::Content*/}
           <div className="flex-row-fluid d-flex flex-column position-relative p-7 overflow-hidden">
             {/*begin::Content header*/}
-            <div className="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
+            {/* <div className="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
               <span className="font-weight-bold text-dark-50">
                 Don't have an account yet?
               </span>
@@ -85,7 +72,7 @@ export function AuthPage() {
               >
                 Sign Up!
               </Link>
-            </div>
+            </div> */}
             {/*end::Content header*/}
 
             {/* begin::Content body */}
@@ -96,10 +83,10 @@ export function AuthPage() {
                   path="/auth/registration"
                   component={Registration}
                 />
-                <ContentRoute
+                {/* <ContentRoute
                   path="/auth/forgot-password"
                   component={ForgotPassword}
-                />
+                /> */}
                 <Redirect from="/auth" exact={true} to="/auth/login" />
                 <Redirect to="/auth/login" />
               </Switch>

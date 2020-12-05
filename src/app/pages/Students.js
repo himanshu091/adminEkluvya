@@ -6,8 +6,10 @@ function Students() {
     const [data, setdata] = useState(null)
     const [showForm, setshowForm] = useState(false)
     const nameQ = useRef(null)
-    const priceQ = useRef(null)
-    const descQ = useRef(null)
+    const mobQ = useRef(null)
+    const passQ = useRef(null)
+    const emailQ = useRef(null)
+    const [err, setErr] = useState("");
     useEffect(() => {
         
       fetchAllStudents()
@@ -20,12 +22,22 @@ function Students() {
       setdata(res)
    }
     const handleSubmit = async () =>{
-      // const res = await createClass(nameQ.current.value, descQ.current.value, priceQ.current.value)
-      // console.log(res)
-      // setshowForm(false)
-      // fetchAllStudents()
+      const res = await createClass(nameQ.current.value, emailQ.current.value, passQ.current.value, mobQ.current.value)
+      console.log(res)
+      setshowForm(false)
+      fetchAllStudents()
 
     }
+    const validatePhone = (event) => {
+      var mob = event.target.value
+
+      var phoneno = /^\d{10}$/;
+      if(mob.match(phoneno)){
+            setErr("")
+            }
+            else{setErr("Enter a valid phone number")
+            }
+      }
     return (
     <div className="container">
     <div className="card card-custom gutter-b">
@@ -132,23 +144,30 @@ function Students() {
     {showForm && <div style={{display:'block', position: 'absolute', top: '50px', zIndex:'100'}}><div role="document" className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
-            <div className="modal-title h4" id="example-modal-sizes-title-lg">Add New Class</div>
+            <div className="modal-title h4" id="example-modal-sizes-title-lg">Add New Student</div>
             <button onClick={()=>{setshowForm(false)}}  type="button" className="close"><span aria-hidden="true">×</span><span className="sr-only">Close</span></button>
           </div>
           <div className="overlay overlay-block cursor-default modal-body">
             <form action="#" className="form form-label-right">
               <div className="form-group row">
                 <div className="col-lg-6">
-                  <label>Class Name</label><input type="text" ref={nameQ} className="form-control" name="className" placeholder="class name"  />
+                  <label>Enter Name Of Student</label><input type="text" ref={nameQ} className="form-control" name="className" placeholder="Enter Name Of Student"  />
                   {/* <div className="feedback">Please enter <b>Class Name</b></div> */}
                 </div>
                 <div className="col-lg-6">
-                  <label>Per Session Cost</label><input type="number" ref={priceQ} className="form-control" name="PerSessionCost" placeholder="Per Session Cost"  />
+                  <label>Enter Email</label><input type="email" ref={emailQ} className="form-control" name="PerSessionCost" placeholder="name@domain.com"  />
                   {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
-                <div className="col-lg-12">
-                  <label>Enter Description</label><textarea type="textarea" ref={descQ} className="form-control" name="description" placeholder="description"  />
+                <div className="col-lg-6">
+                   <br/>
+                  <label>Enter Password</label><input type="password" ref={passQ} className="form-control" name="description" placeholder="Enter Password"  />
                   {/* <div className="feedback">Please enter <b>Login</b></div> */}
+                </div>
+                <div className="col-lg-6">
+                <br/>
+                  <label>Mobile* <span style={{color:'red', fontSize: '10px'}}>{err}</span></label><input type="tel" ref={mobQ} onChange={(e)=>validatePhone(e)} className="form-control" name="mob" placeholder="Enter Mobile"  />
+                  
+                  {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
               </div>
               {/* <div className="form-group row">
@@ -188,7 +207,7 @@ function Students() {
               </div> */}
             </form>
           </div>
-          <div className="modal-footer"><button  onClick={()=>{setshowForm(false)}} type="button" className="btn btn-light btn-elevate">Cancel</button> <button onClick={handleSubmit} type="submit" className="btn btn-primary btn-elevate">Save</button></div>
+          <div className="modal-footer"><button  onClick={()=>{setshowForm(false)}} type="button" className="btn btn-light btn-elevate">Cancel</button> <button onClick={handleSubmit} type="submit" className="btn btn-primary btn-elevate">Create</button></div>
         </div>
       </div></div>}
  </div>)

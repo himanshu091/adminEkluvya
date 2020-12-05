@@ -8,7 +8,7 @@ function StudentItem({index, data, fetchAllClasses}) {
                      
                       <td>{index+1}</td>
                       <td>{data.email}</td>
-                      <td>{data.name}</td>
+                      <td><Link to={`/studentdetail/${data._id}`}>{data.name}</Link></td>
                       <td>{data.mobileNumber}</td>
                       <td>{data.age}</td>
                       <td className="text-right pr-0" style={{ minWidth: '100px' }}>

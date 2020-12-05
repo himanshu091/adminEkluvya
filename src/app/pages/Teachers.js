@@ -17,6 +17,7 @@ function Teachers() {
    const [err, setErr] = useState("");
    const [timing, setTiming] = useState([6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]);
    const [timingSelected, settimingSelected] = useState([false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]);
+   const [searchQuery, setSearchQuery] = useState("")
    useEffect(() => {
       
       fetchAllTeachers()
@@ -105,8 +106,11 @@ function Teachers() {
          }
     return (
     <div className="container">
+    <input type="text" className="form-control" onChange={(e)=>{setSearchQuery(e.target.value)}} placeholder="Search teacher..."/>
+    <br/>
     <div className="card card-custom gutter-b">
        <div className="card-header">
+          
           <div className="card-title">
              <h3 className="card-label">Teachers</h3>
           </div>
@@ -134,7 +138,7 @@ function Teachers() {
                          </span>
                       </th>
                       <th tabIndex={0} aria-label="Firstname sortable" className="sortable">
-                         Email
+                         Name
                          <span className="svg-icon svg-icon-sm svg-icon-primary ml-1 svg-icon-sort">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                <title>Stockholm-icons / Shopping / Sort1</title>
@@ -149,7 +153,7 @@ function Teachers() {
                          </span>
                       </th>
                       <th tabIndex={0} aria-label="Lastname sortable" className="sortable">
-                         Name
+                         Email
                          <span className="svg-icon svg-icon-sm svg-icon-primary ml-1 svg-icon-sort">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                <title>Stockholm-icons / Shopping / Sort1</title>
@@ -214,14 +218,16 @@ function Teachers() {
                 </thead>
                 <tbody>
                   {data && data.map((classItem, index) => {
-                     return <TeacherItem key={classItem._id} fetchAllTeachers={fetchAllTeachers} data={classItem} index={index}/>
+                     if(classItem.name.toLowerCase().includes(searchQuery.toLowerCase())){
+                        return <TeacherItem key={classItem._id} fetchAllTeachers={fetchAllTeachers} data={classItem} index={index}/>
+                     }
                   })}
                 </tbody>
              </table>
           </div>
        </div>
     </div>
-    {showForm && <div style={{display:'block', position: 'absolute', top: '50px', zIndex:'100'}}><div role="document" className="modal-dialog modal-lg">
+    {showForm && <div style={{display:'block', position: 'absolute', top: '0px', zIndex:'100'}}><div role="document" className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <div className="modal-title h4" id="example-modal-sizes-title-lg">Add New Teacher</div>
@@ -249,10 +255,16 @@ function Teachers() {
                   
                   {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
+                  <div className="col-lg-12">
+                     <label>Enter Language for teaching (Comma seperated value)</label><textarea type="text" ref={langQ} className="form-control" name="subject" placeholder="English,Hindi,Tamil"  />
+                     {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
+                  </div>
                 <div className="col-lg-6">
+                   <br/>
                   <label>Primary Subject*</label><input type="text" ref={subjectQ} className="form-control" name="subject" placeholder="Enter Subject"  />
                   {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
+                <div className="col-lg-6"></div>
                 {subject.map((lesson, idx) => {
                         return (
                         <div key={`${lesson}-${idx}`} className="col-lg-6"  style={{display:'flex', justifyContent:'flex-start', marginTop:'25px', alignItems:'center'}}>
@@ -270,15 +282,8 @@ function Teachers() {
                         </div>
                         );
                     })}
-                  <div className="col-lg-12" style={{justifyContent: 'flex-end',display: 'flex', alignItems:'flex-end',marginTop:'5px', alignContent:'flex-start'}}>
-                     <button type="button" className="btn btn-success" onClick={() => handleAdd()}>
-                        Add another Subject
-                     </button>
-                  </div>
-                  <div className="col-lg-12">
-                     <label>Enter Language for teaching (Comma seperated value)</label><textarea type="text" ref={langQ} className="form-control" name="subject" placeholder="English,Hindi,Tamil"  />
-                     {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
-                  </div>
+                  
+                  
                   <div className="col-lg-6">
                      <br/>
                      <label>Start Date</label>
@@ -295,6 +300,11 @@ function Teachers() {
                      {timing.map((time, idx) =>{
                         return <a className="btn btn-warning" onClick={()=>captureTime(idx)} style={{backgroundColor:timingSelected[idx]?'#ff7000':'#ff700000', color:timingSelected[idx]?'#fff':'#000',marginTop:'4px', marginRight:'4px'}}>{time}:00 - {time+1}:00</a>
                      })}
+                  </div>
+                  <div className="col-lg-12" style={{justifyContent: 'flex-end',display: 'flex', alignItems:'flex-end',marginTop:'5px', alignContent:'flex-start'}}>
+                     <button type="button" className="btn btn-success" onClick={() => handleAdd()}>
+                        Add another Subject
+                     </button>
                   </div>
               </div>
             </form>

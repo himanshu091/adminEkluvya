@@ -2,10 +2,7 @@ import React from 'react'
 import ClassDetailView from '../Component/ClassDetailView'
 import Classes from './Classes'
 
-// Total sessions created
-// Total number of Active students
-// Total number of Active Teacher
-// Unassigned Teachers
+
 const card = {
     backgroundColor: '#fff',
     borderRadius: '5px',

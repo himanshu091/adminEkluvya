@@ -16,6 +16,8 @@ import Teachers from "./pages/Teachers";
 import Sessions from "./pages/Sessions";
 import Curriculum from "./pages/Curriculum";
 
+import StudentDetail from "./pages/StudentDetail";
+import TeacherDetail from "./pages/TeacherDetail";
 
 
 const GoogleMaterialPage = lazy(() =>
@@ -42,7 +44,7 @@ export default function BasePage() {
       <Switch>
         {
           /* Redirect from root URL to /dashboard. */
-          <Redirect exact from="/" to="/curriculam" />
+          <Redirect exact from="/" to="/dashboard" />
         }
         <ContentRoute path="/curriculam" component={Curriculum}/>
         <ContentRoute path="/classes" component={Classes}/>
@@ -50,7 +52,9 @@ export default function BasePage() {
         <ContentRoute path="/subjectdetail/:subjectId/:name" component={Chapters}/>
         <ContentRoute path="/chapterdetail/:chapterId/:name" component={Slots}/>
         <ContentRoute path="/students" component={Students}/>
+        <ContentRoute path="/studentdetail/:id" component={StudentDetail}/>
         <ContentRoute path="/teachers" component={Teachers}/>
+        <ContentRoute path="/teachersdetail/:id" component={TeacherDetail}/>
         <ContentRoute path="/sessions" component={Sessions}/>
 
         <ContentRoute path="/ekhomepage" component={EKHomePage} />

@@ -96,11 +96,11 @@ export function AsideMenuList({ layoutProps }) {
           className={`menu-item ${getMenuItemActive("/bookings", false)}`}
           aria-haspopup="true"
         >
-          <NavLink className="menu-link" to="/user-profile">
+          <NavLink className="menu-link" to="/curriculam">
           <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")} />
             </span>
-            <span className="menu-text">View Bookings</span>
+            <span className="menu-text">Curriculum</span>
           </NavLink>
         </li>
         <li className={`menu-item ${getMenuItemActive("/user-profile", false)}`}

@@ -6,6 +6,8 @@ function Sessions() {
     const [data, setdata] = useState(null)
     const [techdata, setTechdata] = useState(null)
     const [showForm, setshowForm] = useState(false)
+    const [assigned, setAssigned] = useState(false)
+    const [usassigned, setUnAssigned] = useState(true)
     const nameQ = useRef(null)
     const emailQ = useRef(null)
     const passwordQ = useRef(null)
@@ -39,6 +41,7 @@ function Sessions() {
        <div className="card-header">
           <div className="card-title">
              <h3 className="card-label">Sessions</h3>
+             
           </div>
           {/* <div className="card-toolbar"><button onClick={()=>{setshowForm(true)}} type="button" className="btn btn-primary">New Sessions</button></div> */}
        </div>
@@ -153,13 +156,29 @@ function Sessions() {
                             </svg>
                          </span>
                       </th>
+                      <th tabIndex={0} aria-label="Email sortable" className="sortable">
+                        TeacherId
+                         <span className="svg-icon svg-icon-sm svg-icon-primary ml-1 svg-icon-sort">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                               <title>Stockholm-icons / Shopping / Sort1</title>
+                               <desc>Created with Sketch.</desc>
+                               <defs />
+                               <g id="Stockholm-icons-/-Shopping-/-Sort1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+                                  <rect id="bound" x={0} y={0} width={24} height={24} />
+                                  <rect id="Rectangle-8" fill="#000000" x={4} y={5} width={16} height={3} rx="1.5" />
+                                  <path d="M7.5,11 L16.5,11 C17.3284271,11 18,11.6715729 18,12.5 C18,13.3284271 17.3284271,14 16.5,14 L7.5,14 C6.67157288,14 6,13.3284271 6,12.5 C6,11.6715729 6.67157288,11 7.5,11 Z M10.5,17 L13.5,17 C14.3284271,17 15,17.6715729 15,18.5 C15,19.3284271 14.3284271,20 13.5,20 L10.5,20 C9.67157288,20 9,19.3284271 9,18.5 C9,17.6715729 9.67157288,17 10.5,17 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
+                               </g>
+                            </svg>
+                         </span>
+                      </th>
                       
                       <th tabIndex={0} className="text-right pr-3">Actions</th>
                    </tr>
                 </thead>
                 <tbody>
                   {data && data.map((classItem, index) => {
-                     return <SessionItem key={classItem._id} teacherData={techdata} fetchAllSessions={fetchAllSessions} data={classItem} index={index}/>
+                           return <SessionItem key={classItem._id} teacherData={techdata} fetchAllSessions={fetchAllSessions} data={classItem} index={index}/>
+                        
                   })}
                 </tbody>
              </table>

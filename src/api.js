@@ -33,7 +33,7 @@ export const createClass = async (name, description, costOfSession) => {
       return res.json(); // parses JSON response into native JavaScript objects
 }
 
-export const createSubject = async (name, description, language, classId) => {
+export const createSubject = async (resBody) => {
 
     const res = await fetch(`${API_URL}/createSubject`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -46,12 +46,12 @@ export const createSubject = async (name, description, language, classId) => {
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({ name:name, classId:classId, description:description, language:language}) // body data type must match "Content-Type" header
+        body: JSON.stringify(resBody) // body data type must match "Content-Type" header
       });
       return res.json(); // parses JSON response into native JavaScript objects
 }
 
-export const createChapter = async (name, classId, subjectId, duration, price, noOfSessions) => {
+export const createChapter = async (body) => {
 
     const res = await fetch(`${API_URL}/createChapter`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -64,7 +64,7 @@ export const createChapter = async (name, classId, subjectId, duration, price, n
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({ name:name, classId:classId, subjectId:subjectId,duration:duration,price:price ,noOfSessions:noOfSessions}) // body data type must match "Content-Type" header
+        body: JSON.stringify(body) // body data type must match "Content-Type" header
       });
       return res.json(); // parses JSON response into native JavaScript objects
 }
@@ -199,8 +199,37 @@ export const fetchChapterById = async (chapterId) => {
       return res.json();
 }
 
+export const fetchTeacherById = async (teacherId) => {
+  const res = await fetch(`${API_URL}/getTeacherById/${teacherId}`, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer'
+    });
+    return res.json();
+}
+
 export const fetchStudents = async () => {
     const res = await fetch(`${API_URL}/getAllStudents`, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+      });
+      return res.json();
+}
+export const fetchStudentById = async (stId) => {
+    const res = await fetch(`https://eklavya-coaching-student.herokuapp.com/getStudentDetails/${stId}`, {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',

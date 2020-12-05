@@ -1,6 +1,7 @@
 import React,{useEffect, useState, useRef} from 'react'
+import { createChapter } from '../../api'
 
-function TopicList({data}) {
+function TopicList({data,currentClass,currentSubject}) {
     const [showModal, setshowModal] = useState(false)
     const nameQ = useRef(null)
     const priceQ = useRef(null)
@@ -11,12 +12,22 @@ function TopicList({data}) {
             console.log()
         }
     }, [data])
-    const handleSubmit = () => {
-
+    const handleSubmit = async () => {
+      const name = nameQ.current.value
+      const totalSessions = priceQ.current.value
+      // const language = descQ.current.value
+      const res = await createChapter({ 
+                                        name: name,
+                                        classId: currentClass,
+                                        subjectId: currentSubject,
+                                        noOfSessions:totalSessions
+                                      });
+      setshowModal(false);
+      window.location.reload()
     }
     return (
         <div style={{width:'100%', minHeight:'350px'}}>
-            <div className="container-fluid" style={{paddingRight: '0px'}}><div className="row" style={{paddingRight: '0px',paddingTop:'10px'}}><div className="col-8"></div><div className="col-4"><a className="btn btn-success" onClick={()=>setshowModal(true)} style={{backgroundColor:'#3e94f6'}}>Add New Lesson</a></div></div></div>
+            {currentSubject && <div className="container-fluid" style={{paddingRight: '0px'}}><div className="row" style={{paddingRight: '0px',paddingTop:'10px'}}><div className="col-8"></div><div className="col-4"><a className="btn btn-success" onClick={()=>setshowModal(true)} style={{backgroundColor:'#3e94f6'}}>Add New Lesson</a></div></div></div>}
             <hr/>
             <p style={{paddingLeft:'10px',paddingRight:'10px'}}><b>Subject Description :</b>{data && data.subjectDescription}</p>
             {data && <table className="table table-bordered">
@@ -54,12 +65,12 @@ function TopicList({data}) {
                   <label>Enter total number of sessions</label><input type="number" ref={priceQ} className="form-control" name="PerSessionCost" placeholder="Total Sessions"  />
                   {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
-                <div className="col-lg-12">
+                {/* <div className="col-lg-12">
                     <br/>
                   <label>Languages(Enter Comma seperated values)</label><textarea type="textarea" ref={descQ} className="form-control" name="description" placeholder="English,Hindi"  />
-                  {/* <div className="feedback">Please enter <b>Login</b></div> */}
+                  
                   <br/>
-                </div>
+                </div> */}
 
               </div>
               {/* <div className="form-group row">

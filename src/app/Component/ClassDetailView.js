@@ -1,6 +1,6 @@
 import { map } from 'lodash'
 import React,{useState, useEffect, useRef} from 'react'
-import { fetchClasses } from '../../api'
+import { createSubject, fetchClasses } from '../../api'
 import SubjectList from './SubjectList'
 
 function ClassDetailView() {
@@ -60,7 +60,7 @@ function ClassDetailView() {
     setLessons(values);
     setlessionSession(values1)
   }
-   const handleSubmit= () => {
+   const handleSubmit= async () => {
       const chapters = lessons.map((l,idx)=>{
         return {
           chapterName: l.value,
@@ -73,9 +73,18 @@ function ClassDetailView() {
       console.log({
         classId:classId,
         name:name,
-        desc:desc,
+        description:desc,
         chapters:chapters
       })
+      const body = {
+        classId:classId,
+        name:name,
+        description:desc,
+        chapters:chapters
+      }
+      const res = await createSubject(body)
+      setshowModal(false)
+      fetchAllClasses()
    }
     return (
       
@@ -102,17 +111,19 @@ function ClassDetailView() {
                   <div className="col-lg-6">
                       <label>Select Class</label>
                       <select ref={classSelectedQ} className="form-control">
-                          <option value="5fc654321ffe22002478cefb">Class 2</option>
-                          <option value="5fc654351ffe22002478cefc">Class 3</option>
-                          <option value="5fc6543b1ffe22002478cefd">Class 4</option>
-                          <option value="5fc6543f1ffe22002478cefe">Class 5</option>
-                          <option value="5fc654431ffe22002478ceff">Class 6</option>
-                          <option value="5fc654491ffe22002478cf00">Class 7</option>
-                          <option value="5fc6544f1ffe22002478cf01">Class 8</option>
-                          <option value="5fc654551ffe22002478cf02">Class 9</option>
-                          <option value="5fc654591ffe22002478cf03">Class 10</option>
+                          <option value="5fc654321ffe22002478cefb">Class 1</option>
+                          <option value="5fc654351ffe22002478cefc">Class 2</option>
+                          <option value="5fc6543b1ffe22002478cefd">Class 3</option>
+                          <option value="5fc6543f1ffe22002478cefe">Class 4</option>
+                          <option value="5fc654431ffe22002478ceff">Class 5</option>
+                          <option value="5fc654491ffe22002478cf00">Class 6</option>
+                          <option value="5fc6544f1ffe22002478cf01">Class 7</option>
+                          <option value="5fc654551ffe22002478cf02">Class 8</option>
+                          <option value="5fc654591ffe22002478cf03">Class 9</option>
+                          <option value="5fc6545f1ffe22002478cf04">Class 10</option>
                           <option value="5fc654621ffe22002478cf05">Class 11</option>
                           <option value="5fc654c01ffe22002478cf06">Class 12</option>
+                          <option value="5fc73e7c28eb660024d92948">Sample Class</option>
                       </select>
                   </div>
                 <div className="col-lg-6">

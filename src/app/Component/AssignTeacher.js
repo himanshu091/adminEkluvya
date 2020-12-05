@@ -40,9 +40,9 @@ function AssignTeacher({teacherData, setCurrentTeacher, slot, subject}) {
                                                 <p style={{marginBottom:'0px', fontWeight:'500',}}>{new Date(teacher.startDate).toDateString()} - {new Date(teacher.endDate).toDateString()}</p>
                                                 <div></div>
                                                 <div style={{display:'flex',flexWrap:'wrap'}}>
-                                                    {teacher.timeSlots.map(sub=>{
-                                                        return <a className="btn btn-danger" style={{fontSize:'10px', backgroundColor:'#ed1576', color:'#fff', marginRight:'2px',padding:'5px'}}>{sub}</a>
-                                                    })}
+                                                    {/* {teacher.timeSlots.map(sub=>{ */}
+                                                        <a className="btn btn-danger" style={{fontSize:'10px', backgroundColor:'green', border:'none', color:'#fff', marginRight:'2px', marginBottom:'2px',padding:'5px'}}>{slot}</a>
+                                                    {/* })} */}
                                                 </div>
                                             </div>
                                         </div>

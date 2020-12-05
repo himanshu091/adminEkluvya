@@ -42,7 +42,7 @@ function SubjectList({currentClass}) {
                 </div>
                 <div className="col-1"></div>
                 <div className="col-8"  style={{backgroundColor:'#fff',padding: '15px'}}>
-                    <TopicList data={currentSubjectData}/>
+                    <TopicList data={currentSubjectData} currentClass={currentClass} currentSubject={selectedSubject}/>
                 </div>
         </div>
     )
