@@ -109,7 +109,7 @@ function ClassDetailView() {
             <form action="#" className="form form-label-right">
               <div className="form-group row">
                   <div className="col-lg-6">
-                      <label>Select Class</label>
+                      <label style={{ color : 'red' }}>Select Class</label>
                       <select ref={classSelectedQ} className="form-control">
                           <option value="5fc654321ffe22002478cefb">Class 1</option>
                           <option value="5fc654351ffe22002478cefc">Class 2</option>

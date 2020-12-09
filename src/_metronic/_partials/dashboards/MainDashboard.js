@@ -6,10 +6,10 @@ import { TilesWidget12 } from '../widgets'
 // Total number of Active Teacher
 // Unassigned Teachers
 function MainDashboard() {
-    const [tSessions, settSessions] = useState(100)
-    const [tStudents, settStudents] = useState(10)
-    const [tTeachers, settTeachers] = useState(3000)
-    const [unAssignedTeacher, setunAssignedTeacher] = useState(150)
+    const [tSessions, settSessions] = useState(0)
+    const [tStudents, settStudents] = useState(0)
+    const [tTeachers, settTeachers] = useState(0)
+    const [unAssignedTeacher, setunAssignedTeacher] = useState(0)
     useEffect(() => {
         const fetchAll = async () => {
             var res = await fetchStudents()

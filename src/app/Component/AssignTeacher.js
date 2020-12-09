@@ -5,21 +5,50 @@ function AssignTeacher({teacherData, setCurrentTeacher, slot, subject}) {
     const [current, setCurrent] = useState(null)
     const [name, setName] = useState(null)
     const [searchQuery, setSearchQuery] = useState("")
+    const [availTeacher, setavailTeacher] = useState(0)
+
+
     const searchTeacher = (e) => {
         const a = e.target.value;
         setSearchQuery(a)
+
+    
+
     }
     useEffect(() => {
         setCurrentTeacher({id:current, name:name})
+
+    
+
         return () => {
-            console.log("teacher")
+            // console.log("teacher")
         }
     }, [current])
+
+useEffect(() => {
+    
+    teacherData.filter(teacher=>{
+        if(teacher.timeSlots.includes(slot) && teacher.mainSubject === subject && teacher.mainSubject.includes(subject) && (teacher.name.toLowerCase().includes(searchQuery.toLowerCase()) || teacher.mainSubject.toLowerCase().includes(searchQuery.toLowerCase()) || teacher.primaryLanguage.toLowerCase().includes(searchQuery.toLowerCase())))
+        {
+        setavailTeacher((availTeacher)=>availTeacher+1)
+           return teacher 
+        }
+    })
+
+    return () => {
+        
+    }
+}, [])
+
+
     return (
         <div>
             <input type="text" className="form-control" onChange={e=>searchTeacher(e)} placeholder="Search Instructor, by name, subject language"/>
             <div style={{height:'450px', width:'535px',overflowY:'scroll',paddingTop:'4px'}}>
-            {teacherData && teacherData.map(teacher =>{
+
+        { availTeacher<=0 && <div> <br/> <br/><h4> No Teacher available for this session.</h4> </div> }
+
+            {availTeacher>0 && teacherData && teacherData.map(teacher =>{
                                 if(teacher.timeSlots.includes(slot) && teacher.mainSubject === subject && teacher.mainSubject.includes(subject) && (teacher.name.toLowerCase().includes(searchQuery.toLowerCase()) || teacher.mainSubject.toLowerCase().includes(searchQuery.toLowerCase()) || teacher.primaryLanguage.toLowerCase().includes(searchQuery.toLowerCase()))){
                                     return(
                                         <div key={teacher._id} onClick={()=>{setCurrent(teacher._id);setName(teacher.name)}} style={{display:'flex', justifyContent: 'space-between', alignItems:'flex-start', flexWrap:'wrap', textTransform:'capitalize', background:current===teacher._id?'#64b5f6':'#e3f2fd', marginBottom:'5px',padding:'5px',borderRadius:'5px', cursor:'pointer'}}>

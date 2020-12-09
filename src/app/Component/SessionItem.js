@@ -1,11 +1,11 @@
-import React,{useState, useRef} from 'react'
+import React,{useState, useRef,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { assignTeacher, deleteClass } from '../../api'
 import AssignTeacher from './AssignTeacher'
 import sha1 from 'js-sha1';
 
 function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
-    const [showForm, setshowForm] = useState(true)
+    const [showForm, setshowForm] = useState(false)
     const [current, setCurrent] = useState(null)
     const nameQ = useRef(null)
     const emailQ = useRef(null)
@@ -19,8 +19,18 @@ function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
     const [joineeName, setjoineeName] = useState("");
 
     
+useEffect(() => {
+  console.log('Teacher Data in Session Item =>',teacherData);
+
+  return () => {
+   
+  }
+}, [])
+
 
     const handleSubmit = async () => {
+
+      if(data){
         const meetingId = data._id
         const meetingName = data.subjectId.name.replace(/\s/g, "+");
         const voiceBridge = 11445
@@ -47,6 +57,7 @@ function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
         console.log(res)
         setshowForm(false)
         fetchAllSessions()
+      }
     }
     const createMeeting = async (meetingId, meetingName, voiceBridge) => {
         var secretKey = "uZEOeBZRdZPNvEJFz95VFNmiwlEMfkI0uxRoevec";
@@ -85,7 +96,8 @@ function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
         );
       };
     return (
-        <tr>
+<>
+      { data.classId &&  data.subjectId && <tr>
                      
                       <td>{index+1}</td>
                       <td>Class {data.classId && data.classId.name}</td>
@@ -120,6 +132,8 @@ function SessionItem({index, data, fetchAllSessions, teachers, teacherData}) {
                         </div>
                     </div></div>}
                    </tr>
+      }
+      </>
     )
 }
 

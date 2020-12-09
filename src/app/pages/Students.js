@@ -22,8 +22,8 @@ function Students() {
       setdata(res)
    }
     const handleSubmit = async () =>{
-      const res = await createClass(nameQ.current.value, emailQ.current.value, passQ.current.value, mobQ.current.value)
-      console.log(res)
+      // const res = await createClass(nameQ.current.value, emailQ.current.value, passQ.current.value, mobQ.current.value)
+      // console.log(res)
       setshowForm(false)
       fetchAllStudents()
 
