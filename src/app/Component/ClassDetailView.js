@@ -20,10 +20,12 @@ function ClassDetailView() {
         return () => {
             console.log('Class')
         }
-    }, [])
+    }, [data])
+
     const updateSelectedClass = () => {
         setselectedClass(classQ.current.value)
     }
+
     const fetchAllClasses = async () =>{
       const res = await fetchClasses()
       setdata(res)
@@ -82,9 +84,10 @@ function ClassDetailView() {
         description:desc,
         chapters:chapters
       }
-      const res = await createSubject(body)
+      // const res = await createSubject(body)
       setshowModal(false)
       fetchAllClasses()
+      window.location.reload();
    }
     return (
       
@@ -111,7 +114,7 @@ function ClassDetailView() {
                   <div className="col-lg-6">
                       <label style={{ color : 'red' }}>Select Class</label>
                       <select ref={classSelectedQ} className="form-control">
-                          <option value="5fc654321ffe22002478cefb">Class 1</option>
+                          {/* <option value="5fc654321ffe22002478cefb">Class 1</option>
                           <option value="5fc654351ffe22002478cefc">Class 2</option>
                           <option value="5fc6543b1ffe22002478cefd">Class 3</option>
                           <option value="5fc6543f1ffe22002478cefe">Class 4</option>
@@ -123,7 +126,12 @@ function ClassDetailView() {
                           <option value="5fc6545f1ffe22002478cf04">Class 10</option>
                           <option value="5fc654621ffe22002478cf05">Class 11</option>
                           <option value="5fc654c01ffe22002478cf06">Class 12</option>
-                          <option value="5fc73e7c28eb660024d92948">Sample Class</option>
+                          <option value="5fc73e7c28eb660024d92948">Sample Class</option> */}
+
+{data && data.map(cla => {
+                    return <option className="" value={cla._id}>Class {cla.name}</option>
+                })}
+
                       </select>
                   </div>
                 <div className="col-lg-6">

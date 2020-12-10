@@ -18,10 +18,10 @@ function Curriculum() {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-3"><div style={card}>data 1</div></div>
-                <div className="col-3"><div style={card}>data 2</div></div>
-                <div className="col-3"><div style={card}>data 3</div></div>
-                <div className="col-3"><div style={card}>data 4</div></div>
+                <div className="col-3"><div style={card}>Example Analytics</div></div>
+                <div className="col-3"><div style={card}>Example Analytics</div></div>
+                <div className="col-3"><div style={card}>Example Analytics</div></div>
+                <div className="col-3"><div style={card}>Example Analytics</div></div>
             </div>
             <br/>
             <ClassDetailView/>
