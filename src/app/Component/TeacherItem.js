@@ -16,12 +16,12 @@ function StudentItem({index, data, fetchAllClasses}) {
                       <td>{data.primaryLanguage}</td>
                       {/* <td>{data.listOfSessionId.length}</td> */}
                       <td className="text-right pr-0" style={{ minWidth: '100px' }}>
-                      <a title="Edit customer" onClick={()=>setenable(!enable)} className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" style={{width:'80px'}}>
+                      <a title="Toggle Visibility" onClick={()=>setenable(!enable)} className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" style={{width:'80px'}}>
                          <span className="svg-icon svg-icon-md svg-icon-primary">
-                           {!enable?"Enable":"Disable"}
+                           <img style={{width:'20px',height:'20px'}} src={!enable?require('../../eyeclosed.png'):require('../../openeye.svg')}/>{!enable?<span>  Enable</span>:<span>  Disable</span>}
                          </span>
                       </a>
-                      <a title="Delete customer" onClick={
+                      <a title="Delete Teacher" onClick={
                          async ()=>{
                             await deleteTeacher(data._id);
                            }

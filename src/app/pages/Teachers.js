@@ -261,10 +261,36 @@ function Teachers() {
                   </div>
                 <div className="col-lg-6">
                    <br/>
-                  <label>Primary Subject*</label><input type="text" ref={subjectQ} className="form-control" name="subject" placeholder="Enter Subject"  />
+                  <label>Select a class*</label>
+                  <select className="form-control" required>
+                     <option>Class 6</option>
+                     <option>Class 7</option>
+                     <option>Class 8</option>
+                     <option>Class 9</option>
+                     <option>Class 10</option>
+                     <option>Class 11</option>
+                     <option>Class 12</option>
+                  </select>
                   {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
                 </div>
-                <div className="col-lg-6"></div>
+                <div className="col-lg-6">
+                   <br/>
+                  <label>Primary Subject*</label><select ref={subjectQ} className="form-control" name="subject" placeholder="Enter Subject" >
+                     <option value="Mathematics">Mathematics</option>
+                     <option value="Science">Science</option>
+                     <option value="History">History</option>
+                     <option value="Civics">Civics</option>
+                     <option value="English">English</option>
+                     <option value="English-2">English-2</option>
+                     <option value="Geography">Geography</option>
+                     <option value="Political Science">Political Science</option>
+                     <option value="English-Grammer">English-Grammer</option>
+                     <option value="Physics">Physics</option>
+                     <option value="Biology">Biology</option>
+                     <option value="Chemistry">Chemistry</option>
+                  </select>
+                  {/* <div className="feedback">Please enter <b>Per Session Cost</b></div> */}
+                </div>
                 {subject.map((lesson, idx) => {
                         return (
                         <div key={`${lesson}-${idx}`} className="col-lg-6"  style={{display:'flex', justifyContent:'flex-start', marginTop:'25px', alignItems:'center'}}>
@@ -286,7 +312,7 @@ function Teachers() {
                   
                   <div className="col-lg-6">
                      <br/>
-                     <label>Start Date</label>
+                     <label>Available Date</label>
                      <input type="date" ref={startQ} className="form-control"></input>
                   </div>
                   <div className="col-lg-6">
