@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_URL = "https://eklavya-coaching-admin.herokuapp.com/api/v1/secret/admin"
+const API_URL = "https://classes.ekluvya.guru/api/admin"
 
 export const fetchClasses = async () => {
     try{
