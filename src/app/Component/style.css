@@ -18,9 +18,23 @@
     min-height: 400px;
     width: 40%;
 }
+.box1{
+    position: relative;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
 .action-button{
     position:absolute;
     bottom: 5px;
+}
+.action-button1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 .class-edit-form{
     padding-top: 15px;

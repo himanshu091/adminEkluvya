@@ -109,7 +109,7 @@ export const deleteClass = async (classId) => {
       return res.json();
 
 }
-export const deleteSubject = async (subjectId) => {
+export const deleteSubject = async (subjectId, classId) => {
     const res = await fetch(`${API_URL}/deleteSubject/${subjectId}`, {
         method: 'DELETE',
         mode: 'cors',
@@ -119,12 +119,13 @@ export const deleteSubject = async (subjectId) => {
           'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer'
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({classId: classId})
       });
       return res.json();
 
 }
-export const deleteChapter = async (chapterId) => {
+export const deleteChapter = async (chapterId, subjectId) => {
     const res = await fetch(`${API_URL}/deleteChapter/${chapterId}`, {
         method: 'DELETE',
         mode: 'cors',
@@ -134,7 +135,8 @@ export const deleteChapter = async (chapterId) => {
           'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer'
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({subjectId: subjectId})
       });
       return res.json();
 

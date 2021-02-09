@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import ClassDetailView from '../Component/ClassDetailView'
+import DeleteClassModal from '../Component/DeleteClassModal'
+import DeleteSubjectModal from '../Component/DeleteSubjectModal'
+import DeleteTopicModal from '../Component/DeleteTopicModal'
 import EditClassModal from '../Component/EditClassModal'
 import EditSubjectModal from '../Component/EditSubjectModal'
 import EditTopicModal from '../Component/EditTopicModal'
@@ -21,6 +24,9 @@ function Curriculum() {
     const [showClassEdit, setShowClassEdit] = useState(false)
     const [showSubjectEdit, setShowSubjectEdit] = useState(false)
     const [showTopicEdit, setShowTopicEdit] = useState(false)
+    const [showClassDelete, setShowClassDelete] = useState(false)
+    const [showSubjectDelete, setShowSubjectDelete] = useState(false)
+    const [showTopicDelete, setShowTopicDelete] = useState(false)
     const toggleVissibility = () => {
         setShowClassEdit(!showClassEdit)
     }
@@ -30,6 +36,9 @@ function Curriculum() {
     const toggleVissibilityTopic = () => {
         setShowTopicEdit(!showTopicEdit)
     }
+    const toggleVissibilityClassDelete = () => {setShowClassDelete(!showClassDelete)}
+    const toggleVissibilitySubjectDelete = () => {setShowSubjectDelete(!showSubjectDelete)}
+    const toggleVissibilityTopicDelete = () => {setShowTopicDelete(!showTopicDelete)}
     return (
         <div className="container">
             
@@ -49,6 +58,9 @@ function Curriculum() {
                     <button className="btn btn-outline-primary" style={{marginRight:'10px', marginLeft:'10px'}} onClick={toggleVissibility}>Edit Class Details</button>
                     <button className="btn btn-outline-primary" style={{marginRight:'10px'}} onClick={toggleVissibilitySubject}>Edit Subject Details</button>
                     <button className="btn btn-outline-primary" style={{marginRight:'10px'}} onClick={toggleVissibilityTopic}>Edit Topic</button>
+                    <button className="btn btn-outline-danger" style={{marginRight:'10px'}} onClick={toggleVissibilityClassDelete}>Delete Class</button>
+                    <button className="btn btn-outline-danger" style={{marginRight:'10px'}} onClick={toggleVissibilitySubjectDelete}>Delete Subject</button>
+                    <button className="btn btn-outline-danger" style={{marginRight:'10px'}} onClick={toggleVissibilityTopicDelete}>Delete Topic</button>
                 </div>
             </div>
             <br/>
@@ -56,6 +68,9 @@ function Curriculum() {
             {showClassEdit && <EditClassModal toggleVissibility={()=>toggleVissibility()}/>}
             {showSubjectEdit && <EditSubjectModal toggleVissibility={()=>toggleVissibilitySubject()}/>}
             {showTopicEdit && <EditTopicModal toggleVissibility={()=>toggleVissibilityTopic()}/>}
+            {showClassDelete && <DeleteClassModal toggleVissibility={()=>toggleVissibilityClassDelete()}/>}
+            {showSubjectDelete && <DeleteSubjectModal toggleVissibility={()=>toggleVissibilitySubjectDelete()}/>}
+            {showTopicDelete && <DeleteTopicModal toggleVissibility={()=>toggleVissibilityTopicDelete()}/>}
         </div>
     )
 }
