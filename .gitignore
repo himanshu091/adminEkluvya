@@ -18,6 +18,7 @@
 # production
 /_site
 /build
+/build-new
 
 # misc
 .DS_Store
