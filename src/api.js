@@ -1,5 +1,6 @@
 import axios from "axios"
 const API_URL = "https://classes.ekluvya.guru/api/admin"
+// const API_URL = "https://ekluvya-admin.herokuapp.com"
 
 export const fetchClasses = async () => {
     try{
@@ -333,3 +334,52 @@ export const assignTeacher = async (sessionId,teacherId,meetingUrl,teacherMeetin
 //   });
 //   return res.json(); // parses JSON response into native JavaScript objects
 // }
+
+export const editClass = async (classId,data) => {
+  const res = await fetch(`${API_URL}/editClass/${classId}`, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return res.json(); // parses JSON response into native JavaScript objects
+}
+export const editSubject = async (subjectId,data) => {
+  const res = await fetch(`${API_URL}/editSubject/${subjectId}`, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return res.json(); // parses JSON response into native JavaScript objects
+}
+export const editTopic = async (topicId,data) => {
+  const res = await fetch(`${API_URL}/editChapter/${topicId}`, {
+    method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return res.json(); // parses JSON response into native JavaScript objects
+}

@@ -20,7 +20,7 @@ function ClassDetailView() {
         return () => {
             console.log('Class')
         }
-    }, [data])
+    }, [])
 
     const updateSelectedClass = () => {
         setselectedClass(classQ.current.value)

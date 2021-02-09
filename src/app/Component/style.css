@@ -1,0 +1,28 @@
+.modal-class{
+    position: absolute;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #00000035;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    position: relative;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 400px;
+    width: 40%;
+}
+.action-button{
+    position:absolute;
+    bottom: 5px;
+}
+.class-edit-form{
+    padding-top: 15px;
+    padding-bottom: 68px;
+}
